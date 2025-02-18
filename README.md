@@ -232,7 +232,7 @@ user-crud/
 |   |-- middlewares/
 |   |   |-- authMiddlewares.js
 |   |-- services/
-|   |   |-- userService.js
+|   |   |-- userServices.js
 |-- .env
 |-- server.js
 
