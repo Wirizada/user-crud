@@ -19,7 +19,7 @@ Esta é uma API CRUD de gerenciamento de usuários desenvolvida com Node.js, E
 1. Clone o repositório:
 
    bash
-   git clone https://github.com/seu-usuario/user-crud.git
+   git clone https://github.com/Wirizada/user-crud.git
    
 
 2. Navegue até o diretório do projeto:
@@ -58,9 +58,9 @@ Esta é uma API CRUD de gerenciamento de usuários desenvolvida com Node.js, E
    npm run dev
    
 
-2. O servidor estará rodando em `http://localhost:5000`.
+2. O servidor estará rodando em `http://localhost:3000`.
 
-3. Acesse a documentação interativa do Swagger em `http://localhost:5000/api-docs`.
+3. Acesse a documentação interativa do Swagger em `http://localhost:3000/api-docs`.
 
 ## Endpoints
 
@@ -230,7 +230,7 @@ user-crud/
 |   |-- routes/
 |   |   |-- userRoutes.js
 |   |-- middlewares/
-|   |   |-- authMiddleware.js
+|   |   |-- authMiddlewares.js
 |   |-- services/
 |   |   |-- userService.js
 |-- .env
@@ -251,9 +251,9 @@ user-crud/
 Contribuições são bem-vindas! Para contribuir, por favor, siga os passos abaixo:
 
 1. Fork o repositório.
-2. Crie uma nova branch: `git checkout -b minha-branch`
-3. Faça as alterações desejadas e commit: `git commit -m 'Minha contribuição'`
-4. Push para a branch: `git push origin minha-branch`
+2. Crie uma nova branch: `git checkout -b 'branch'`
+3. Faça as alterações desejadas e commit: `git commit -m 'contribuição'`
+4. Push para a branch: `git push origin 'branch'`
 5. Abra um pull request.
 
 ## Licença
