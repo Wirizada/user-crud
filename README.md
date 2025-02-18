@@ -1,223 +1,143 @@
 # User CRUD API
 
-Esta é uma API CRUD de gerenciamento de usuários desenvolvida com Node.js, Express, MongoDB e Mongoose, com autenticação JWT. A API permite criar, ler, atualizar e deletar usuários.
+Esta é uma API CRUD de gerenciamento de usuários desenvolvida com Node.js, Express, MongoDB e Mongoose, com autenticação JWT. A API permite criar, ler, atualizar e deletar usuários.
 
-## Índice
+## Índice
 
-- [Instalação](#instalação)
-- [Configuração](#configuração)
+- [Instalação](#instalação)
+- [Configuração](#configuração)
 - [Uso](#uso)
 - [Endpoints](#endpoints)
-- [Autenticação](#autenticação)
+- [Autenticação](#autenticação)
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Contribuição](#contribuição)
-- [Licença](#licença)
+- [Contribuição](#contribuição)
+- [Licença](#licença)
 
-## Instalação
+## Instalação
 
-1. Clone o repositório:
+1. Clone o repositório:
 
-   bash
+   ```bash
    git clone https://github.com/Wirizada/user-crud.git
-   
+   ```
 
-2. Navegue até o diretório do projeto:
+2. Navegue até o diretório do projeto:
 
-   bash
+   ```bash
    cd user-crud
-   
+   ```
 
-3. Instale as dependências:
+3. Instale as dependências:
 
-   bash
+   ```bash
    npm install
-   
+   ```
 
-## Configuração
+## Configuração
 
-1. Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis de ambiente:
+1. Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis de ambiente:
 
-   plaintext
+   ```plaintext
    MONGO_URI=mongodb://localhost:27017/seu_banco_de_dados
    JWT_SECRET=sua_chave_secreta_jwt
    PORT=5000
-   
+   ```
 
 2. (Opcional) Para gerar uma chave secreta JWT, use o seguinte comando no terminal:
 
-   bash
+   ```bash
    node -e "console.log(require('crypto').randomBytes(64).toString('hex'));"
-   
+   ```
 
 ## Uso
 
 1. Inicie o servidor em modo de desenvolvimento:
 
-   bash
+   ```bash
    npm run dev
-   
+   ```
 
-2. O servidor estará rodando em `http://localhost:3000`.
+2. O servidor estará rodando em `http://localhost:3000`.
 
-3. Acesse a documentação interativa do Swagger em `http://localhost:3000/api-docs`.
+3. Acesse a documentação interativa do Swagger em `http://localhost:3000/api-docs`.
 
 ## Endpoints
 
-### Registro de Usuário
+### Registro de Usuário
 
 - **URL**: `/api/users/register`
-- **Método**: `POST`
-- **Descrição**: Registra um novo usuário.
-- **Corpo da Requisição**:
-  json
-  {
-    "name": "Gabriel Vaz",
-    "email": "gabriel.vaz@example.com",
-    "password": "supersecret"
-  }
-  
-- **Resposta**:
-  - **201**: Usuário registrado com sucesso.
-  - **400**: Usuário já existe.
-- **Exemplo de Resposta**:
-  json
-  {
-    "msg": "Usuário registrado com sucesso",
-    "newUser": {
-      "_id": "60d0fe4f5311236168a109ca",
-      "name": "Gabriel Vaz",
-      "email": "gabriel.vaz@example.com",
-      "password": "supersecret",
-      "__v": 0
-    }
-  }
-  
+- **Método**: `POST`
+- **Descrição**: Registra um novo usuário.
+- **Corpo da Requisição**:
 
-### Login de Usuário
+   ```json
+   {
+     "name": "Gabriel Vaz",
+     "email": "gabriel.vaz@example.com",
+     "password": "supersecret"
+   }
+   ```
+
+- **Resposta**:
+  - **201**: Usuário registrado com sucesso.
+  - **400**: Usuário já existe.
+
+- **Exemplo de Resposta**:
+
+   ```json
+   {
+     "msg": "Usuário registrado com sucesso",
+     "newUser": {
+       "_id": "60d0fe4f5311236168a109ca",
+       "name": "Gabriel Vaz",
+       "email": "gabriel.vaz@example.com",
+       "password": "supersecret",
+       "__v": 0
+     }
+   }
+   ```
+
+### Login de Usuário
 
 - **URL**: `/api/users/login`
-- **Método**: `POST`
-- **Descrição**: Faz login de um usuário.
-- **Corpo da Requisição**:
-  json
-  {
-    "email": "gabriel.vaz@example.com",
-    "password": "supersecret"
-  }
-  
+- **Método**: `POST`
+- **Descrição**: Faz login de um usuário.
+- **Corpo da Requisição**:
+
+   ```json
+   {
+     "email": "gabriel.vaz@example.com",
+     "password": "supersecret"
+   }
+   ```
+
 - **Resposta**:
   - **200**: Login bem-sucedido com token JWT.
-  - **400**: Email ou senha inválidos.
-- **Exemplo de Resposta**:
-  json
-  {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-  }
-  
+  - **400**: Email ou senha inválidos.
 
-### Obter Todos os Usuários
+- **Exemplo de Resposta**:
+
+   ```json
+   {
+     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+   }
+   ```
+
+### Obter Todos os Usuários
 
 - **URL**: `/api/users`
-- **Método**: `GET`
-- **Descrição**: Obtém todos os usuários.
-- **Cabeçalho da Requisição**: `x-auth-token: seu_token_jwt`
-- **Resposta**:
-  - **200**: Lista de usuários.
-- **Exemplo de Resposta**:
-  json
-  [
-    {
-      "_id": "60d0fe4f5311236168a109ca",
-      "name": "Gabriel Vaz",
-      "email": "gabriel.vaz@example.com",
-      "password": "supersecret",
-      "__v": 0
-    },
-    {
-      "_id": "60d0fe4f5311236168a109cb",
-      "name": "Jane Doe",
-      "email": "jane.doe@example.com",
-      "password": "topsecret",
-      "__v": 0
-    }
-  ]
-  
+- **Método**: `GET`
+- **Descrição**: Obtém todos os usuários.
+- **Cabeçalho da Requisição**: `x-auth-token: seu_token_jwt`
 
-### Obter Usuário por ID
+## Autenticação
 
-- **URL**: `/api/users/{id}`
-- **Método**: `GET`
-- **Descrição**: Obtém um usuário pelo ID.
-- **Cabeçalho da Requisição**: `x-auth-token: seu_token_jwt`
-- **Resposta**:
-  - **200**: Usuário encontrado.
-  - **404**: Usuário não encontrado.
-- **Exemplo de Resposta**:
-  json
-  {
-    "_id": "60d0fe4f5311236168a109ca",
-    "name": "Gabriel Vaz",
-    "email": "gabriel.vaz@example.com",
-    "password": "supersecret",
-    "__v": 0
-  }
-  
-
-### Atualizar Usuário
-
-- **URL**: `/api/users/{id}`
-- **Método**: `PUT`
-- **Descrição**: Atualiza um usuário pelo ID.
-- **Cabeçalho da Requisição**: `x-auth-token: seu_token_jwt`
-- **Corpo da Requisição**:
-  json
-  {
-    "name": "Gabriel Vaz",
-    "email": "gabriel.vaz@example.com",
-    "password": "newsecret"
-  }
-  
-- **Resposta**:
-  - **200**: Usuário atualizado com sucesso.
-  - **404**: Usuário não encontrado.
-- **Exemplo de Resposta**:
-  json
-  {
-    "msg": "Usuário atualizado com sucesso",
-    "updatedUser": {
-      "_id": "60d0fe4f5311236168a109ca",
-      "name": "Gabriel Vaz",
-      "email": "gabriel.vaz@example.com",
-      "password": "newsecret",
-      "__v": 0
-    }
-  }
-  
-
-### Deletar Usuário
-
-- **URL**: `/api/users/{id}`
-- **Método**: `DELETE`
-- **Descrição**: Deleta um usuário pelo ID.
-- **Cabeçalho da Requisição**: `x-auth-token: seu_token_jwt`
-- **Resposta**:
-  - **200**: Usuário deletado com sucesso.
-  - **404**: Usuário não encontrado.
-- **Exemplo de Resposta**:
-  json
-  {
-    "msg": "Usuário deletado com sucesso"
-  }
-  
-
-## Autenticação
-
-Esta aplicação utiliza JWT (JSON Web Token) para autenticação. O token JWT deve ser incluído no cabeçalho da requisição como `x-auth-token`.
+Esta aplicação utiliza JWT (JSON Web Token) para autenticação. O token JWT deve ser incluído no cabeçalho da requisição como `x-auth-token`.
 
 ## Estrutura do Projeto
 
-plaintext
+```plaintext
 user-crud/
    |-- src/
    |   |-- config/
@@ -235,7 +155,7 @@ user-crud/
    |   |   |-- userServices.js
    |-- .env
    |-- server.js
-
+```
 
 ## Tecnologias Utilizadas
 
@@ -246,16 +166,17 @@ user-crud/
 - [JWT](https://jwt.io/)
 - [Swagger](https://swagger.io/)
 
-## Contribuição
+## Contribuição
 
-Contribuições são bem-vindas! Para contribuir, por favor, siga os passos abaixo:
+Contribuições são bem-vindas! Para contribuir, por favor, siga os passos abaixo:
 
-1. Fork o repositório.
+1. Fork o repositório.
 2. Crie uma nova branch: `git checkout -b 'branch'`
-3. Faça as alterações desejadas e commit: `git commit -m 'contribuição'`
+3. Faça as alterações desejadas e commit: `git commit -m 'contribuição'`
 4. Push para a branch: `git push origin 'branch'`
 5. Abra um pull request.
 
-## Licença
+## Licença
 
-Este projeto está licenciado sob a [Licença MIT](https://opensource.org/licenses/MIT).
+Este projeto está licenciado sob a [Licença MIT](https://opensource.org/licenses/MIT).
+
