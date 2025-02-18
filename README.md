@@ -219,22 +219,22 @@ Esta aplicação utiliza JWT (JSON Web Token) para autenticação. O token J
 
 plaintext
 user-crud/
-|-- src/
-|   |-- config/
-|   |   |-- db.js
-|   |   |-- swagger.js
-|   |-- controllers/
-|   |   |-- userController.js
-|   |-- models/
-|   |   |-- userModel.js
-|   |-- routes/
-|   |   |-- userRoutes.js
-|   |-- middlewares/
-|   |   |-- authMiddlewares.js
-|   |-- services/
-|   |   |-- userServices.js
-|-- .env
-|-- server.js
+   |-- src/
+   |   |-- config/
+   |   |   |-- db.js
+   |   |   |-- swagger.js
+   |   |-- controllers/
+   |   |   |-- userController.js
+   |   |-- models/
+   |   |   |-- userModel.js
+   |   |-- routes/
+   |   |   |-- userRoutes.js
+   |   |-- middlewares/
+   |   |   |-- authMiddlewares.js
+   |   |-- services/
+   |   |   |-- userServices.js
+   |-- .env
+   |-- server.js
 
 
 ## Tecnologias Utilizadas
